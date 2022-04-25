@@ -11,12 +11,12 @@ FIELD_NAME_CONFIRMED_RESULTS = "confirmed_results"
 class ParserUtil:
     @staticmethod
     def parse_json_object_to_data_item(json_object):
-        data_item = DataItem(json_object[FIELD_NAME_IDENTIFIER],
-                             json_object[FIELD_NAME_IDENTIFIER_IMAGE],
-                             json_object[FIELD_NAME_RESULTS],
-                             json_object[FIELD_NAME_RESULTS_IMAGE],
-                             json_object[FIELD_NAME_CONFIRMED_IDENTIFIER],
-                             json_object[FIELD_NAME_CONFIRMED_RESULTS])
+        data_item = DataItem(json_object.get(FIELD_NAME_IDENTIFIER),
+                             json_object.get(FIELD_NAME_IDENTIFIER_IMAGE),
+                             json_object.get(FIELD_NAME_RESULTS),
+                             json_object.get(FIELD_NAME_RESULTS_IMAGE),
+                             json_object.get(FIELD_NAME_CONFIRMED_IDENTIFIER),
+                             json_object.get(FIELD_NAME_CONFIRMED_RESULTS))
         return data_item
 
     @staticmethod
