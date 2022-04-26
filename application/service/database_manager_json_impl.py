@@ -1,4 +1,5 @@
 from application.repository.file_io_json import FileIoJson
+from application.service.database_manager_abc import DatabaseManagerAbc
 from application.util.parser_util import ParserUtil
 
 
@@ -9,7 +10,7 @@ def __fill_default_value_if_data_missing__(data_item):
         data_item.confirmed_results = data_item.results
 
 
-class DatabaseManager:
+class DatabaseManagerJsonImpl(DatabaseManagerAbc):
     def __init__(self, input_file_path, output_file_path):
         self._file_manager_ = FileIoJson(input_file_path, output_file_path)
 
