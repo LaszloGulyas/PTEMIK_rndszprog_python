@@ -44,6 +44,12 @@ class DatabaseManagerJsonImpl(DatabaseManagerAbc):
                 return record
         return None
 
+    def get_first_item_by_confirmed_identifier(self, confirmed_identifier):
+        for record in self.data_object:
+            if record.confirmed_identifier == confirmed_identifier:
+                return record
+        return None
+
     def get_first_item_by_index(self, index):
         if len(self.data_object) > index >= 0:
             return self.data_object[index]

@@ -18,6 +18,10 @@ class DatabaseManagerAbc(ABC):
         return
 
     @abstractmethod
+    def get_first_item_by_confirmed_identifier(self, confirmed_identifier) -> DataItem | None:
+        return
+
+    @abstractmethod
     def get_first_item_by_index(self, index) -> DataItem | None:
         return
 

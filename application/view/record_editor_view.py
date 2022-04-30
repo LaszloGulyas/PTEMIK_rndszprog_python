@@ -114,8 +114,8 @@ class RecordEditorView:
         self._controller_.handle_previous_button_press(identifier_to_search)
 
     def __submit_search_handler(self):
-        identifier_to_search = self.txt_search_identifier_value_var.get()
-        self._controller_.handle_search_button_press(identifier_to_search)
+        confirmed_identifier_to_search = self.txt_search_identifier_value_var.get()
+        self._controller_.handle_search_button_press(confirmed_identifier_to_search)
 
     def __show_next_handler(self):
         identifier_to_search = self.lbl_identifier_value.cget("text")
