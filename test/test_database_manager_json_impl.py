@@ -1,7 +1,7 @@
 from application.service.database_manager_json_impl import DatabaseManagerJsonImpl
 import unittest
 
-db_manager = DatabaseManagerJsonImpl("../resources/database_input.json", "../resources/database_output.json")
+db_manager = DatabaseManagerJsonImpl()
 _data_list_ = []
 
 
