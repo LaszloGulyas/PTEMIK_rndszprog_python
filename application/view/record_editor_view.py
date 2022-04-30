@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.messagebox
 from tkinter.constants import END, NW
 from application.view.image_group import ImageGroup
 
@@ -8,6 +9,7 @@ class RecordEditorView:
         self._controller_ = controller
 
         self.window = None
+        self.msg_box = None
         self.lbl_identifier = None
         self.lbl_identifier_value = None
         self.lbl_confirmed_identifier = None
@@ -37,6 +39,8 @@ class RecordEditorView:
         self.window.geometry('640x480')
 
     def _create_widgets_(self):
+        self.msg_box = tkinter.messagebox
+
         self.lbl_identifier = tk.Label(self.window, text="Identifier:")
         self.lbl_identifier.place(x=20, y=30)
 
@@ -86,7 +90,7 @@ class RecordEditorView:
         self.btn_show_previous = tk.Button(self.window, text="Show previous")
         self.btn_show_previous.place(x=20, y=400)
 
-        self.btn_search = tk.Button(self.window, text="Search")
+        self.btn_search = tk.Button(self.window, text="Search", command=self.__submit_search_handler)
         self.btn_search.place(x=300, y=400)
 
         self.btn_show_next = tk.Button(self.window, text="Show next")
@@ -101,3 +105,10 @@ class RecordEditorView:
     def update_img_in_canvas(image_group, photo_image):
         image_group.image = photo_image
         image_group.canvas.create_image(0, 0, image=image_group.image, anchor=NW)
+
+    def send_message_box(self, message):
+        self.msg_box.showinfo("Message", message)
+
+    def __submit_search_handler(self):
+        identifier_to_search = self.txt_search_identifier_value_var.get()
+        self._controller_.handle_search_button_press(identifier_to_search)

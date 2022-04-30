@@ -32,6 +32,12 @@ class RecordEditorController:
         self.__update_image_widget__(view.img_grp_results_image,
                                      PathUtil.get_project_resources().joinpath(record.result_image))
 
+    def handle_search_button_press(self, identifier):
+        if self._db_service_.get_index_of_item(identifier) is None:
+            self._editor_view_.send_message_box("Identifier not found!")
+        else:
+            self.update_view_fields(identifier)
+
     @staticmethod
     def __convert_array_to_printable_string__(array):
         result_string = ""
