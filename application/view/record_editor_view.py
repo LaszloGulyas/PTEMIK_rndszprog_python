@@ -87,7 +87,7 @@ class RecordEditorView:
                                                     textvariable=self.txt_search_identifier_value_var, width=20)
         self.txt_search_identifier_value.place(x=260, y=370)
 
-        self.btn_show_previous = tk.Button(self.window, text="Show previous")
+        self.btn_show_previous = tk.Button(self.window, text="Show previous", command=self.__show_previous_handler)
         self.btn_show_previous.place(x=20, y=400)
 
         self.btn_search = tk.Button(self.window, text="Search", command=self.__submit_search_handler)
@@ -108,6 +108,10 @@ class RecordEditorView:
 
     def send_message_box(self, message):
         self.msg_box.showinfo("Message", message)
+
+    def __show_previous_handler(self):
+        identifier_to_search = self.lbl_identifier_value.cget("text")
+        self._controller_.handle_previous_button_press(identifier_to_search)
 
     def __submit_search_handler(self):
         identifier_to_search = self.txt_search_identifier_value_var.get()

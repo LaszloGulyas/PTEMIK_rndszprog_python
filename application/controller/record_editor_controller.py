@@ -38,6 +38,15 @@ class RecordEditorController:
         else:
             self.update_view_fields(identifier)
 
+    def handle_previous_button_press(self, identifier):
+        record_index = self._db_service_.get_index_of_item(identifier)
+        record_index -= 1
+        record = self._db_service_.get_first_item_by_index(record_index)
+        if record is None:
+            self._editor_view_.send_message_box("This is the first record.")
+        else:
+            self.update_view_fields(record.identifier)
+
     def handle_next_button_press(self, identifier):
         record_index = self._db_service_.get_index_of_item(identifier)
         record_index += 1
