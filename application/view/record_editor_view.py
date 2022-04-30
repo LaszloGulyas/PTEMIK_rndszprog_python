@@ -56,6 +56,8 @@ class RecordEditorView:
         self.txt_confirmed_identifier_value = tk.Entry(self.window,
                                                        textvariable=self.txt_confirmed_identifier_value_var, width=20)
         self.txt_confirmed_identifier_value.place(x=140, y=70)
+        self.txt_confirmed_identifier_value.bind("<Return>", self.__event_enter_pressed_in_text_entry_handler)
+        self.txt_confirmed_identifier_value.bind("<FocusOut>", self.__event_text_entry_focused_out_handler)
 
         canvas = tk.Canvas(self.window)
         canvas.configure(width=300, height=70, bg="white")
@@ -75,6 +77,8 @@ class RecordEditorView:
         self.txt_confirmed_results_value = tk.Entry(self.window,
                                                     textvariable=self.txt_confirmed_results_value_var, width=80)
         self.txt_confirmed_results_value.place(x=140, y=180)
+        self.txt_confirmed_results_value.bind("<Return>", self.__event_enter_pressed_in_text_entry_handler)
+        self.txt_confirmed_results_value.bind("<FocusOut>", self.__event_text_entry_focused_out_handler)
 
         canvas = tk.Canvas(self.window)
         canvas.configure(width=600, height=120, bg="white")
@@ -121,3 +125,15 @@ class RecordEditorView:
     def __show_next_handler(self):
         identifier_to_search = self.lbl_identifier_value.cget("text")
         self._controller_.handle_next_button_press(identifier_to_search)
+
+    def __event_enter_pressed_in_text_entry_handler(self, event):
+        identifier = self.lbl_identifier_value.cget("text")
+        confirmed_identifier = self.txt_confirmed_identifier_value_var.get()
+        confirmed_results = self.txt_confirmed_results_value_var.get()
+        self._controller_.update_db_values(identifier, confirmed_identifier, confirmed_results)
+
+    def __event_text_entry_focused_out_handler(self, event):
+        identifier = self.lbl_identifier_value.cget("text")
+        confirmed_identifier = self.txt_confirmed_identifier_value_var.get()
+        confirmed_results = self.txt_confirmed_results_value_var.get()
+        self._controller_.update_db_values(identifier, confirmed_identifier, confirmed_results)

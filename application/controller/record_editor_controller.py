@@ -32,6 +32,10 @@ class RecordEditorController:
         self.__update_image_widget__(view.img_grp_results_image,
                                      PathUtil.get_project_resources().joinpath(record.result_image))
 
+    def update_db_values(self, identifier, confirmed_identifier, confirmed_results):
+        confirmed_results = self.__convert_string_to_savable_array__(confirmed_results)
+        self._db_service_.update_confirmed_values_by_identifier(identifier, confirmed_identifier, confirmed_results)
+
     def handle_search_button_press(self, confirmed_identifier):
         record = self._db_service_.get_first_item_by_confirmed_identifier(confirmed_identifier)
         if record is None:
@@ -64,6 +68,10 @@ class RecordEditorController:
             result_string += str(num)
             result_string += ", "
         return result_string.strip().strip(',')
+
+    @staticmethod
+    def __convert_string_to_savable_array__(string_numbers):
+        return string_numbers.split(", ")
 
     def __update_image_widget__(self, img_group, path):
         view = self._editor_view_
