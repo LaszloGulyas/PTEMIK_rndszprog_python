@@ -68,6 +68,12 @@ class DatabaseManagerJsonImpl(DatabaseManagerAbc):
             index += 1
         return None
 
+    def update_confirmed_values_by_identifier(self, identifier, confirmed_identifier, confirmed_results):
+        record = self.get_first_item_by_identifier(identifier)
+        record.confirmed_identifier = confirmed_identifier
+        record.confirmed_results = confirmed_results
+        self.save_data()
+
     def __init_file_paths__(self):
         resources_path = PathUtil.get_project_resources()
         self._input_file_path_ = resources_path.joinpath(_INPUT_FILE_NAME_)

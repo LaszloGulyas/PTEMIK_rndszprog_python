@@ -32,3 +32,7 @@ class DatabaseManagerAbc(ABC):
     @abstractmethod
     def get_index_of_item(self, identifier) -> int | None:
         return
+
+    @abstractmethod
+    def update_confirmed_values_by_identifier(self, identifier, confirmed_identifier, confirmed_results):
+        pass
