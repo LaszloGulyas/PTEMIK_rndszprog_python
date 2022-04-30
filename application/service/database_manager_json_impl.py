@@ -4,7 +4,7 @@ from application.util.parser_util import ParserUtil
 from application.util.path_util import PathUtil
 
 _INPUT_FILE_NAME_ = "database_input.json"
-_OUTPUT_FILE_NAME = "database_input.json"
+_OUTPUT_FILE_NAME = "database_output.json"
 
 
 def __fill_default_value_if_data_missing__(data_item):
