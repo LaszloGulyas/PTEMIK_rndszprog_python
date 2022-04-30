@@ -16,3 +16,7 @@ class DatabaseManagerAbc(ABC):
     @abstractmethod
     def find_first_by_identifier(self, identifier) -> DataItem | None:
         return
+
+    @abstractmethod
+    def get_first_item(self) -> DataItem | None:
+        return
