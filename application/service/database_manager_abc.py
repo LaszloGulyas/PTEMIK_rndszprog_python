@@ -20,3 +20,7 @@ class DatabaseManagerAbc(ABC):
     @abstractmethod
     def get_first_item(self) -> DataItem | None:
         return
+
+    @abstractmethod
+    def get_index_of_item(self) -> int | None:
+        return

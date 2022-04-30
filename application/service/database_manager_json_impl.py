@@ -49,6 +49,14 @@ class DatabaseManagerJsonImpl(DatabaseManagerAbc):
             return self.data_object[0]
         return None
 
+    def get_index_of_item(self, identifier):
+        index = 0
+        for record in self.data_object:
+            if record.identifier == identifier:
+                return index
+            index += 1
+        return None
+
     def __init_file_paths__(self):
         resources_path = PathUtil.get_project_resources()
         self._input_file_path_ = resources_path.joinpath(_INPUT_FILE_NAME_)
