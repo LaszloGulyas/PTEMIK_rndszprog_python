@@ -1,6 +1,6 @@
 import tkinter as tk
 import tkinter.messagebox
-from tkinter.constants import END, NW
+from tkinter.constants import NW
 from application.view.image_group import ImageGroup
 
 
