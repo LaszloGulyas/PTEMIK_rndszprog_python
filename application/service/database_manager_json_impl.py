@@ -45,7 +45,7 @@ class DatabaseManagerJsonImpl(DatabaseManagerAbc):
         return None
 
     def get_first_item_by_index(self, index):
-        if index < len(self.data_object) or index < 0:
+        if len(self.data_object) > index >= 0:
             return self.data_object[index]
         return None
 
