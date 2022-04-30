@@ -38,10 +38,15 @@ class DatabaseManagerJsonImpl(DatabaseManagerAbc):
             json_to_write.append(ParserUtil.parse_data_item_to_json_object(item))
         self._file_manager_.write_json_object_to_file(json_to_write)
 
-    def find_first_by_identifier(self, identifier):
+    def get_first_item_by_identifier(self, identifier):
         for record in self.data_object:
             if record.identifier == identifier:
                 return record
+        return None
+
+    def get_first_item_by_index(self, index):
+        if index < len(self.data_object):
+            return self.data_object[index]
         return None
 
     def get_first_item(self):

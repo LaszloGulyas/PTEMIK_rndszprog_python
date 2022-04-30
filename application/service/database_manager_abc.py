@@ -14,7 +14,11 @@ class DatabaseManagerAbc(ABC):
         pass
 
     @abstractmethod
-    def find_first_by_identifier(self, identifier) -> DataItem | None:
+    def get_first_item_by_identifier(self, identifier) -> DataItem | None:
+        return
+
+    @abstractmethod
+    def get_first_item_by_index(self, index) -> DataItem | None:
         return
 
     @abstractmethod
@@ -22,5 +26,5 @@ class DatabaseManagerAbc(ABC):
         return
 
     @abstractmethod
-    def get_index_of_item(self) -> int | None:
+    def get_index_of_item(self, identifier) -> int | None:
         return
