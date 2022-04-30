@@ -17,6 +17,8 @@ def __fill_default_value_if_data_missing__(data_item):
 
 class DatabaseManagerJsonImpl(DatabaseManagerAbc):
     def __init__(self):
+        self.data_object = None
+
         self._input_file_path_ = None
         self._output_file_path_ = None
         self.__init_file_paths__()
@@ -29,13 +31,19 @@ class DatabaseManagerJsonImpl(DatabaseManagerAbc):
             data_item = ParserUtil.parse_json_object_to_data_item(item)
             __fill_default_value_if_data_missing__(data_item)
             data_item_list.append(data_item)
-        return data_item_list
+        self.data_object = data_item_list
 
-    def save_data(self, data_item_list):
+    def save_data(self):
         json_to_write = []
-        for item in data_item_list:
+        for item in self.data_object:
             json_to_write.append(ParserUtil.parse_data_item_to_json_object(item))
         self._file_manager_.write_json_object_to_file(json_to_write)
+
+    def find_first_by_identifier(self, identifier):
+        for record in self.data_object:
+            if record.identifier == identifier:
+                return record
+        return None
 
     def __init_file_paths__(self):
         root_path = PathUtil.get_project_root()

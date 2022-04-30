@@ -7,6 +7,6 @@ _data_list_ = []
 
 class TestDatabaseManagerJsonImpl(unittest.TestCase):
     def test_reading_and_writing(self):
-        self._data_list_ = db_manager.read_data()
-        self.assertNotEqual(self._data_list_, None)
-        db_manager.save_data(self._data_list_)
+        db_manager.read_data()
+        self.assertNotEqual(db_manager.data_object, None)
+        db_manager.save_data()
