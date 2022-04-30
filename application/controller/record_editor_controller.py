@@ -19,7 +19,7 @@ class RecordEditorController:
         self.update_view_fields(first_record.identifier)
 
     def update_view_fields(self, identifier):
-        record = self._db_service_.find_first_by_identifier(identifier)
+        record = self._db_service_.get_first_item_by_identifier(identifier)
         view = self._editor_view_
 
         view.lbl_identifier_value.config(text=record.identifier)
@@ -37,6 +37,15 @@ class RecordEditorController:
             self._editor_view_.send_message_box("Identifier not found!")
         else:
             self.update_view_fields(identifier)
+
+    def handle_next_button_press(self, identifier):
+        record_index = self._db_service_.get_index_of_item(identifier)
+        record_index += 1
+        record = self._db_service_.get_first_item_by_index(record_index)
+        if record is None:
+            self._editor_view_.send_message_box("This is the last record.")
+        else:
+            self.update_view_fields(record.identifier)
 
     @staticmethod
     def __convert_array_to_printable_string__(array):

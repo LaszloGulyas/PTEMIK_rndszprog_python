@@ -93,7 +93,7 @@ class RecordEditorView:
         self.btn_search = tk.Button(self.window, text="Search", command=self.__submit_search_handler)
         self.btn_search.place(x=300, y=400)
 
-        self.btn_show_next = tk.Button(self.window, text="Show next")
+        self.btn_show_next = tk.Button(self.window, text="Show next", command=self.__show_next_handler)
         self.btn_show_next.place(x=555, y=400)
 
     @staticmethod
@@ -112,3 +112,7 @@ class RecordEditorView:
     def __submit_search_handler(self):
         identifier_to_search = self.txt_search_identifier_value_var.get()
         self._controller_.handle_search_button_press(identifier_to_search)
+
+    def __show_next_handler(self):
+        identifier_to_search = self.lbl_identifier_value.cget("text")
+        self._controller_.handle_next_button_press(identifier_to_search)
