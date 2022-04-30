@@ -23,10 +23,10 @@ class RecordEditorController:
         view = self._editor_view_
 
         view.lbl_identifier_value.config(text=record.identifier)
-        view.update_txt_field_value(view.txt_confirmed_identifier_value, record.confirmed_identifier)
+        view.update_txt_field_value(view.txt_confirmed_identifier_value_var, record.confirmed_identifier)
         view.lbl_results_value.config(text=self.__convert_array_to_printable_string__(record.results))
-        view.update_txt_field_value(view.txt_confirmed_results_value,
-                                    self.__convert_array_to_printable_string__(record.confirmed_results))
+        view.update_txt_field_value(view.txt_confirmed_results_value_var,
+                                     self.__convert_array_to_printable_string__(record.confirmed_results))
         self.__update_image_widget__(view.img_grp_identifier_image,
                                      PathUtil.get_project_resources().joinpath(record.identifier_image))
         self.__update_image_widget__(view.img_grp_results_image,

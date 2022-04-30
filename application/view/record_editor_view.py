@@ -14,11 +14,13 @@ class RecordEditorView:
         self.lbl_identifier_value = None
         self.lbl_confirmed_identifier = None
         self.txt_confirmed_identifier_value = None
+        self.txt_confirmed_identifier_value_var = None
         self.img_grp_identifier_image = None
         self.lbl_results = None
         self.lbl_results_value = None
         self.lbl_confirmed_results = None
         self.txt_confirmed_results_value = None
+        self.txt_confirmed_results_value_var = None
         self.cvs_results_image = None
         self.cvs_results_image_file = None
         self.lbl_search_identifier = None
@@ -97,9 +99,8 @@ class RecordEditorView:
         self.btn_show_next.place(x=555, y=400)
 
     @staticmethod
-    def update_txt_field_value(txt_field, new_value):
-        txt_field.delete(0, END)
-        txt_field.insert(0, new_value)
+    def update_txt_field_value(txt_field_var, new_value):
+        txt_field_var.set(new_value)
 
     @staticmethod
     def update_img_in_canvas(image_group, photo_image):
