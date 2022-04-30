@@ -3,7 +3,6 @@ from application.service.database_manager_abc import DatabaseManagerAbc
 from application.util.parser_util import ParserUtil
 from application.util.path_util import PathUtil
 
-_RESOURCE_FOLDER_NAME_ = "resources"
 _INPUT_FILE_NAME_ = "database_input.json"
 _OUTPUT_FILE_NAME = "database_input.json"
 
@@ -51,6 +50,6 @@ class DatabaseManagerJsonImpl(DatabaseManagerAbc):
         return None
 
     def __init_file_paths__(self):
-        root_path = PathUtil.get_project_root()
-        self._input_file_path_ = root_path.joinpath(_RESOURCE_FOLDER_NAME_).joinpath(_INPUT_FILE_NAME_)
-        self._output_file_path_ = root_path.joinpath(_RESOURCE_FOLDER_NAME_).joinpath(_OUTPUT_FILE_NAME)
+        resources_path = PathUtil.get_project_resources()
+        self._input_file_path_ = resources_path.joinpath(_INPUT_FILE_NAME_)
+        self._output_file_path_ = resources_path.joinpath(_OUTPUT_FILE_NAME)
