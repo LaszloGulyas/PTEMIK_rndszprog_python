@@ -1,10 +1,14 @@
-from PIL import Image, ImageTk
-from PIL.ImageTk import PhotoImage
+import tkinter
+from tkinter import PhotoImage
 
 
 class ImageUtil:
     @staticmethod
     def build_photo_image_by_path(img_path, resize_x, resize_y) -> PhotoImage:
-        image = Image.open(img_path)
-        image = image.resize((resize_x, resize_y), Image.ANTIALIAS)
-        return ImageTk.PhotoImage(image)
+        image = tkinter.PhotoImage(file=img_path)
+        if image.width() == 0 or image.height() == 0:
+            return image
+
+        while image.width() > resize_x or image.height() > resize_y:
+            image = image.subsample(2)
+        return image
