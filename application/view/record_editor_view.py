@@ -114,26 +114,29 @@ class RecordEditorView:
     def send_message_box(self, message):
         self.msg_box.showinfo("Message", message)
 
+    def __send_update_request_for_confirmed_fields__(self):
+        identifier = self.lbl_identifier_value.cget("text")
+        confirmed_identifier = self.txt_confirmed_identifier_value_var.get()
+        confirmed_results = self.txt_confirmed_results_value_var.get()
+        self._controller_.update_db_values(identifier, confirmed_identifier, confirmed_results)
+
     def __show_previous_handler(self):
+        self.__send_update_request_for_confirmed_fields__()
         identifier_to_search = self.lbl_identifier_value.cget("text")
         self._controller_.handle_previous_button_press(identifier_to_search)
 
     def __submit_search_handler(self):
+        self.__send_update_request_for_confirmed_fields__()
         confirmed_identifier_to_search = self.txt_search_identifier_value_var.get()
         self._controller_.handle_search_button_press(confirmed_identifier_to_search)
 
     def __show_next_handler(self):
+        self.__send_update_request_for_confirmed_fields__()
         identifier_to_search = self.lbl_identifier_value.cget("text")
         self._controller_.handle_next_button_press(identifier_to_search)
 
     def __event_enter_pressed_in_text_entry_handler(self, event):
-        identifier = self.lbl_identifier_value.cget("text")
-        confirmed_identifier = self.txt_confirmed_identifier_value_var.get()
-        confirmed_results = self.txt_confirmed_results_value_var.get()
-        self._controller_.update_db_values(identifier, confirmed_identifier, confirmed_results)
+        self.__send_update_request_for_confirmed_fields__()
 
     def __event_text_entry_focused_out_handler(self, event):
-        identifier = self.lbl_identifier_value.cget("text")
-        confirmed_identifier = self.txt_confirmed_identifier_value_var.get()
-        confirmed_results = self.txt_confirmed_results_value_var.get()
-        self._controller_.update_db_values(identifier, confirmed_identifier, confirmed_results)
+        self.__send_update_request_for_confirmed_fields__()
